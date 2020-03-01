@@ -1,0 +1,28 @@
+<form [formGroup]="genericFormGroup" (ngSubmit)="onSubmit()">
+  <div *ngFor="let fields of box" class="row">
+    <ng-container *ngFor="let field of fields">
+      <div [ngSwitch]="field.type" style="align-items: center; width: 100%;">
+        <ng-container *ngSwitchCase="genericControlsType.input">
+          <mat-form-field *ngIf="!!field.nameCtrl; else btn">
+            <mat-label>{{field.name}}</mat-label>
+            <input matInput placeholder="Escriba aqui..." [formControlName]="field.nameCtrl">
+          </mat-form-field>
+        </ng-container>
+        <ng-container *ngSwitchCase="genericControlsType.check">
+          <mat-checkbox [formControlName]="field.nameCtrl">{{field.name}}</mat-checkbox>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <ng-container *ngTemplateOutlet="btn; context: { field: field }"></ng-container>
+        </ng-container>
+      </div>
+    </ng-container>
+  </div>
+  <ng-template #btn let-field="field">
+    <div class="col">
+      <button mat-raised-button color="primary" type="submit" [disabled]="genericFormGroup.invalid">{{ field.text || 'Aceptar' }}</button>
+    </div>
+    <div class="col">
+      <button mat-raised-button color="warn" type="button" *ngIf="field.reset" (click)="genericFormGroup.reset()">Resetear</button>
+    </div>
+  </ng-template>
+</form>

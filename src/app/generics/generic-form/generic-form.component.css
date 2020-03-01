@@ -1,0 +1,29 @@
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-height: 60px;
+}
+
+mat-form-field {
+  min-height: 60px;
+}
+
